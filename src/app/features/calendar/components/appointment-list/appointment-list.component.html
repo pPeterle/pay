@@ -1,0 +1,8 @@
+<div *ngFor="let hour of apointmentsKeys" class="container">
+  <p class="hour">{{hour | formartHour}}</p>
+  <div class="appointment-list" [id]="hour" cdkDropList cdkDropListSortingDisabled
+    [cdkDropListData]="appointmentsByHour[hour]" (cdkDropListDropped)="drop($event)">
+    <app-appointment (closeEvent)="removeAppointment(item)" *ngFor="let item of appointmentsByHour[hour]"
+      [appointment]="item" cdkDrag></app-appointment>
+  </div>
+</div>

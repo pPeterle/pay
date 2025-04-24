@@ -1,0 +1,28 @@
+.calendar {
+  width: 20rem;
+  height: fit-content;
+  margin: 1rem;
+}
+
+section {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  background: white;
+}
+
+.current-day {
+  color: #e91e63;
+  font-size: 2rem;
+  padding: 1.4rem .6rem;
+  margin-left: 4rem;
+  border-left: 0.5px solid #C8C4C3;
+}
+
+.appointments {
+  height: calc(100vh - 64px);
+}
+
+.appointments-list {
+  overflow: auto;
+}

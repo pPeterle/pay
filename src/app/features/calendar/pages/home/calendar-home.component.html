@@ -1,0 +1,32 @@
+<mat-toolbar color="primary">
+  <button  data-testid="menu-button" (click)="drawer.toggle(); isOpen = !isOpen" mat-icon-button>
+    <mat-icon [@rotate]="isOpen ? 'rotated' : 'default'">arrow_forward</mat-icon>
+  </button>
+  <span>My Calendar</span>
+</mat-toolbar>
+
+<mat-drawer-container class="example-container" autosize>
+  <mat-drawer data-testid="drawer" opened #drawer class="example-sidenav" mode="side">
+    <mat-card class="calendar">
+      <mat-card-content>
+        <button data-testid="add-appointment-button" (click)="openDialog()" mat-raised-button matTooltip="Primary" color="primary"
+          aria-label="Example icon-button with a heart icon">
+          <mat-icon>add</mat-icon>
+          Add Event
+        </button>
+        <mat-calendar [selected]="selectedDate$ | async " (selectedChange)="selectDate($event)"></mat-calendar>
+      </mat-card-content>
+    </mat-card>
+  </mat-drawer>
+
+  <section class="appointments">
+    <div class="current-day">
+      <p>{{selectedDate$ | async | date : 'MMMM d, y'}}</p>
+    </div>
+    <div class="appointments-list">
+      <app-appointment-list cdkDropListGroup (deletedAppointmentEvent)="removeAppointment($event)"
+        [appointmentsByHour]="appointmentsByHour"></app-appointment-list>
+    </div>
+  </section>
+
+</mat-drawer-container>

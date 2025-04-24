@@ -1,0 +1,45 @@
+<form (ngSubmit)="submit()" [formGroup]="appointmentForm" #formDir="ngForm">
+  <h1 mat-dialog-title>Update Appointment</h1>
+  <div mat-dialog-content class="content">
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Title</mat-label>
+      <input data-testid="update-appointment-title-input" formControlName="title" matInput>
+      <mat-error *ngIf="appointmentForm.get('title')?.hasError('required')">
+        title is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Choose a date</mat-label>
+      <input matInput [matDatepicker]="datepicker"  formControlName="date">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="datepicker"></mat-datepicker-toggle>
+      <mat-datepicker #datepicker>
+        <mat-datepicker-actions>
+          <button mat-button matDatepickerCancel>Cancel</button>
+          <button mat-raised-button color="primary" matDatepickerApply>Apply</button>
+        </mat-datepicker-actions>
+      </mat-datepicker>
+      <mat-error *ngIf="appointmentForm.get('date')?.hasError('required')">
+        date is required
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" class="form-field">
+      <mat-label>Time</mat-label>
+      <input formControlName="time" type="time" matInput>
+      <mat-error *ngIf="appointmentForm.get('time')?.hasError('required')">
+        title is required
+      </mat-error>
+
+    </mat-form-field>
+
+    <button data-testid="delete-appointment-button" (click)="openDeleteDialog()" type="button" mat-button color="warn">Delete appointment</button>
+
+  </div>
+  <div mat-dialog-actions align="end">
+    <button mat-button mat-dialog-close>Close</button>
+    <button data-testid="save-appointment-button" type="submit" mat-raised-button color="primary">Save</button>
+  </div>
+</form>

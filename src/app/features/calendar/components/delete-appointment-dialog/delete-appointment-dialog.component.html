@@ -1,0 +1,8 @@
+<h1 mat-dialog-title>Delete Appointment</h1>
+<div mat-dialog-content>
+  Do you want to delete {{data.title}} ?
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Close</button>
+  <button data-testid="delete-appointment" (click)="deleteAppointment()" type="submit" mat-raised-button color="warn">Delete</button>
+</div>
